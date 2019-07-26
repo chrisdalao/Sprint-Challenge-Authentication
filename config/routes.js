@@ -1,5 +1,6 @@
 const axios = require('axios');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 const Users = require('../users/users-model.js');
 
 const { authenticate } = require('../auth/authenticate');
@@ -61,4 +62,20 @@ function getJokes(req, res) {
     .catch(err => {
       res.status(500).json({ message: 'Error Fetching Jokes', error: err });
     });
+}
+
+
+function generateToken(user) {
+  const jwtPayload = {
+    subject: user.id, //subject is what the token represents - usually the user id
+    username: user.username,
+  }
+
+  const jwtSecret = process.env.JWT_SECRET || 'Keep it severet, keep it safe!';
+
+  const jwtOptions = {
+    expiresIn: '1d'
+  }
+
+  return jwt.sign(jwtPayload, jwtSecret, jwtOptions)
 }
