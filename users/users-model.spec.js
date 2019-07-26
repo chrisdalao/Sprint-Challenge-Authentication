@@ -13,7 +13,7 @@ describe('users model', () => {
 
     describe('add()', () => {
         it('should add a user into the db', async () => {
-            await Users.add({ username: 'child', password: 'pass' }) //using the api
+            await Users.add({ username: 'sailor', password: 'pass' }) //using the api
             const users = await db('users')//directly looking into the db
             expect(users).toHaveLength(1)
 
