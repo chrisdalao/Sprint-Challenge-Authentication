@@ -7,13 +7,8 @@ module.exports = {
     findById,
 };
 
-function find(department) {
+function find() {
     const query = db('users').select('id', 'username', 'password');
-
-    if (department) {//only execute query if user has a department
-        query.where({ department });
-    }
-
     return query;
 }
 

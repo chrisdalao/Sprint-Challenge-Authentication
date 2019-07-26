@@ -22,9 +22,9 @@ describe('users model', () => {
 
     describe('find()', () => {
         it('should get all users from the db', () => {
-            Users.find()
+            return Users.find()
                 .then(users => {
-                    expect(users).toHaveLength(1)
+                    expect(users).toHaveLength(0)
                 })
         })
     })
